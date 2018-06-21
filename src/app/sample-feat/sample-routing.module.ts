@@ -3,7 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { SampleViewComponent } from "./sample-view/sample-view.component";
 
 const sampleRoutes: Routes = [
-    {path:'sample', component: SampleViewComponent}
+    {path:'', component: SampleViewComponent}
 ];
 
 @NgModule({
