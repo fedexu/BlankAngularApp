@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon'
 //https://material.angular.io/components/categories
 
 import { SampleViewComponent } from './sample-view/sample-view.component';
+import { SampleFeatComponent } from './sample-feat/sample-feat.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SampleViewComponent } from './sample-view/sample-view.component';
     SampleRoutingModule
   ],
   declarations: [
-    SampleViewComponent
+    SampleViewComponent,
+    SampleFeatComponent
   ]
 })
 export class SampleFeatModule { constructor() { console.info('SampleFeatModule loaded') } }
