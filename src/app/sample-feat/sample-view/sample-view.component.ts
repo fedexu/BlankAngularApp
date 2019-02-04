@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalService } from 'src/app/app-common/modal/modal.service';
 
 @Component({
   selector: 'baa-sample-view',
   templateUrl: './sample-view.component.html',
-  styleUrls: ['./sample-view.component.css']  
+  styleUrls: ['./sample-view.component.css']
 })
 export class SampleViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalService:ModalService) { }
 
   ngOnInit() {
   }
