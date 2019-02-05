@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ModalService } from 'src/app/app-common/modal/modal.service';
 
 @Component({
@@ -7,8 +7,8 @@ import { ModalService } from 'src/app/app-common/modal/modal.service';
   styleUrls: ['./sample-view.component.css']
 })
 export class SampleViewComponent implements OnInit {
-
-  constructor(private modalService:ModalService) { }
+  
+  constructor(private modalService: ModalService) { }
 
   ngOnInit() {
   }

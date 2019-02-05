@@ -8,12 +8,12 @@ import { AppCanDeactivate } from "./guards/app-can-deactivate.guard";
 
 const appRoutes: Routes = [
     {
-        path: 'sample', loadChildren: './sample-feat/sample-feat.module#SampleFeatModule',
+        path: '', loadChildren: './sample-feat/sample-feat.module#SampleFeatModule',
         canLoad: [AppCanLoad],
         canActivate: [AppCanActivate],
         canDeactivate: [AppCanDeactivate]
     },
-    { path: '**', component: PageNotFoundComponent }
+    // { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

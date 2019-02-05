@@ -9,6 +9,7 @@ import { ModalComponent } from './modal/modal.component';
 import { CardHeaderComponent } from './card/card-header.component';
 import { CardBodyComponent } from './card/card-body.component';
 import { CardFooterComponent } from './card/card-footer.component';
+import { HilightDirective } from './directives/hilight.directive';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { CardFooterComponent } from './card/card-footer.component';
         CardComponent,
         CardHeaderComponent,
         CardBodyComponent,
-        CardFooterComponent
+        CardFooterComponent,
+        HilightDirective
     ],
     providers: [
         ModalService
@@ -36,7 +38,8 @@ import { CardFooterComponent } from './card/card-footer.component';
         CardComponent,
         CardHeaderComponent,
         CardBodyComponent,
-        CardFooterComponent
+        CardFooterComponent,
+        HilightDirective
     ]
 })
 export class AppCommonModule { constructor() { console.info('CommonModule loaded') } }
