@@ -13,4 +13,12 @@ export class SampleViewComponent implements OnInit {
   ngOnInit() {
   }
 
+  closeModal(id:string){
+    this.modalService.close(id);
+  }
+
+  openModal(id:string){
+    this.modalService.open(id);
+  }
+
 }
