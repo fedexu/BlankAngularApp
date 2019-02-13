@@ -1,5 +1,6 @@
 <?php
 require_once dirname(__FILE__).'/lib/limonade.php';
+require_once dirname(__FILE__).'/lib/mimeType/mimeType.php';
 
 # ============================================================================ #
 #    CONFIG THE APP HERE                                                       #
@@ -68,32 +69,36 @@ function php_errors($errno, $errstr, $errfile, $errline){
 function serve_static_file(){
   
   global $STATIC_FOLDER;
+  global $mime_types;
 
   $url = $_SERVER['REQUEST_URI'];
   $env = env();
 
+  //check if the script name is on the path (dev env)
   if (strpos($url, $env['SERVER']['SCRIPT_NAME']) !== false){
     $url = str_replace($env['SERVER']['SCRIPT_NAME'],"", $url);
   }
 
+  $path_parts = pathinfo($url);
+
+  // check if the requested uri is the root application, if it is return the index.html .
   if ($url == '/'){
     include $STATIC_FOLDER . '/index.html';
     exit();
   }
 
-  $path_parts = pathinfo($url);
+  // check if the requested uri is index.html or the root without the '/', if it is return the location to root app '/'.
+  if ($url == '' || $path_parts['basename'] == "index.html" ){
+    header("Location: " . "http://" . $_SERVER['HTTP_HOST'] . str_replace('/index.html',"",  $_SERVER['REQUEST_URI']) . '/');
+    exit();
+  }
   
+  // check if the requested uri have a file extension
   if ($path_parts['extension'] != "" ){
+    // check if the requested file exist
     if (file_exists($STATIC_FOLDER . $url)) {
-      if ($path_parts['extension'] == 'css' )
-        header("Content-type: text/css");
-      if ($path_parts['extension'] == 'js' )
-        header("Content-type: application/json");
-        
-      //TODO SET HEADER
-      // header("Content-type: application/json");
-      // readfile(realpath($STATIC_FOLDER . $url));
-      // exit();
+      // set mime type and return the file
+      header("Content-type: " . $mime_types[ $path_parts['extension'] ] );
       include $STATIC_FOLDER . $url;
       exit();
     }
