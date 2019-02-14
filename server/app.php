@@ -9,7 +9,7 @@ require_once dirname(__FILE__).'/lib/mimeType/mimeType.php';
 // Static folder
 // Must be a root folder
 $STATIC_FOLDER = "dist/";
-$MAIN_APP = '/routeManager.php';
+$MAIN_APP = "/routes/routeManager.php";
 
 # ============================================================================ #
 #    CHANGE THE CODE BELOW IF YOU KNOW WHAT ARE YOU DOING                      #
@@ -44,27 +44,27 @@ function before($route){
 }
   
 function after($output, $route){
-  $time = number_format( microtime(true) - LIM_START_MICROTIME, 6);
-  $output .= "\n<!-- page rendered in $time sec., on ".date(DATE_RFC822)." -->\n";
-  $output .= "<!-- for route\n";
-  $output .= print_r($route, true);
-  $output .= "-->";
+  // $time = number_format( microtime(true) - LIM_START_MICROTIME, 6);
+  // $output .= "\n<!-- page rendered in $time sec., on ".date(DATE_RFC822)." -->\n";
+  // $output .= "<!-- for route\n";
+  // $output .= print_r($route, true);
+  // $output .= "-->";
   return $output;
 }
 
 //Common error handling
 
-error(E_LIM_HTTP, 'http_errors');
-function http_errors($errno, $errstr, $errfile, $errline){
-    status($errno);
-    return html('<h1>'.http_response_status_code($errno).'</h1>');
-}
+// error(E_LIM_HTTP, 'http_errors');
+// function http_errors($errno, $errstr, $errfile, $errline){
+//     status($errno);
+//     return html('<h1>'.http_response_status_code($errno).'</h1>');
+// }
 
-error(E_LIM_PHP, 'php_errors');
-function php_errors($errno, $errstr, $errfile, $errline){
-    status($errno);
-    return html('<h1>'.http_response_status_code($errno).'</h1>');
-}
+// error(E_LIM_PHP, 'php_errors');
+// function php_errors($errno, $errstr, $errfile, $errline){
+//     status($errno);
+//     return html('<h1>'.http_response_status_code($errno).'</h1>');
+// }
 
 function serve_static_file(){
   
@@ -104,6 +104,13 @@ function serve_static_file(){
     }
   }
 
+}
+
+// return json body as Array
+function get_post_body(){
+  $inputJSON = file_get_contents('php://input');
+  $input = json_decode($inputJSON, true); //convert JSON into array
+  return $input;
 }
 
 require_once dirname(__FILE__).$MAIN_APP;
