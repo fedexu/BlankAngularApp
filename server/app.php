@@ -99,7 +99,7 @@ function serve_static_file(){
     if (file_exists($STATIC_FOLDER . $url)) {
       // set mime type and return the file
       header("Content-type: " . $mime_types[ $path_parts['extension'] ] );
-      include $STATIC_FOLDER . $url;
+      readfile($STATIC_FOLDER . $url);
       exit();
     }
   }
